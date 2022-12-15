@@ -1,7 +1,7 @@
-from Cpf import Cpf
+from Cpf import ValidarCpf
+from validate_docbr import CPF
 
-cpf = 1101768435
+cpf1 = "11017688435"
 
-objeto_cpf = Cpf(cpf)
-
-print(objeto_cpf)
+novo_cpf = ValidarCpf("11017688435")
+print(novo_cpf)
