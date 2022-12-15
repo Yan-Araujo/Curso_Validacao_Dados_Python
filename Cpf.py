@@ -4,17 +4,17 @@ from validate_docbr import CPF
 class ValidarCpf:
 
     def __init__(self, documento):
+        self._cpf = documento
         documento = str(documento)
-
-        if self.cpf_eh_valido(documento):
-            self._cpf = documento
-        else:
-            raise ValueError("CPF Inválido")
+        self.cpf_eh_valido(documento)
 
     def cpf_eh_valido(self, documento):
 
         if len(documento) == 11:
-            return True
+            if CPF().validate(documento):
+                return self._cpf
+            else:
+                raise ValueError("CPF Inválido")
         else:
             raise ValueError("Quantidade de digitos inválida")
 
@@ -32,4 +32,3 @@ class ValidarCpf:
     def padronizar_cpf(self):
         formatacao = CPF()
         return formatacao.mask(self.cpf)
-
