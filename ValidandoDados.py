@@ -1,2 +1,7 @@
-def aprofundando_em_validacao_de_dados():
-    print("Validadando Dados: ")
+from Cpf import Cpf
+
+cpf = 1101768435
+
+objeto_cpf = Cpf(cpf)
+
+print(objeto_cpf)
