@@ -1,7 +1,10 @@
-from Cpf import ValidarCpf
+from Cpf_Cnpj import Documento
 
+cpf1 = "96431082796"
+cnpj1 = "23189383000274"
 
-cpf1 = "11111111212"
+documento1 = Documento.criar_documento(cpf1)
+documento2 = Documento.criar_documento(cnpj1)
 
-novo_cpf = ValidarCpf(cpf1)
-print(novo_cpf)
+print(documento1)
+print(documento2)
