@@ -67,7 +67,7 @@ class ValidarCnpj:
 
 
 class ValidarDocumentoEmUmaUnicaClasse:
-    def __init__(self, documento, tipo_documento):
+    def __init__(self, documento, tipo_documento: str):
         self._documento = documento
         self._tipo_documento = tipo_documento.lower()
         self.validar_documento(documento, tipo_documento)
@@ -113,3 +113,4 @@ class ValidarDocumentoEmUmaUnicaClasse:
         elif self.tipo_documento == "cnpj":
             validador_cnpj = CNPJ()
             return validador_cnpj.mask(self.documento)
+
