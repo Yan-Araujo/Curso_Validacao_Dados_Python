@@ -38,8 +38,21 @@ def validar_datas():
 
 
 def validar_cep():
-    cep = BuscaEndereco("01529001")
+    cep = BuscaEndereco("51020220")
     print(cep)
+    print(cep.acesso_via_cep())
 
 
-validar_datas()
+validar_identidade()
+
+separar_codigos()
+
+validar_identidade()
+
+separar_codigos()
+
+validar_numero_telefone()
+
+separar_codigos()
+
+validar_cep()

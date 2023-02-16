@@ -1,4 +1,5 @@
 import re
+import requests
 
 
 class BuscaEndereco:
@@ -15,7 +16,7 @@ class BuscaEndereco:
     @staticmethod
     def cep_e_valido(cep):
         if type(cep) != str:
-            raise TypeError("Formato inválido")
+            raise TypeError(f"Tipo do parámetro inválido. Tipo esperado: <class 'str'>, Tipo recebido: {type(cep)}")
         else:
             if len(cep) == 8:
                 return True
@@ -32,6 +33,31 @@ class BuscaEndereco:
         cep_formatado_2 = f"{self.cep[:5]}-{self.cep[5:]}"
         return cep_formatado
 
+    def acesso_via_cep(self):
+        url = f"https://viacep.com.br/ws/{self.cep}/json/"
+        requisicao = requests.get(url)
+        dados = requisicao.json()
+        '''
+        Tentativa de retorno usando for loop
+        Status: return retorna primeira incidencia do loop então não consigo faz o output de todos os dados sem usar uma
+        estrutura de dados
+        '''
+        informacoes = []
+        dados_requisitados = ["localidade", "bairro", "uf"]
+        for key in dados:
+            if key in dados_requisitados:
+                informacoes.append(f"{str(key).capitalize()}: {dados[key]}")
+        return informacoes
 
-CEP = BuscaEndereco("01529001")
-print(CEP)
+        # Output de dados inserido individualmente
+        # return dados.get["cep"], \
+        #        dados["logradouro"], \
+        #        dados["complemento"], \
+        #        dados["bairro"], \
+        #        dados["localidade"], \
+        #        dados["uf"], \
+        #        dados["ibge"], \
+        #        dados["gia"], \
+        #        dados["ddd"], \
+        #        dados["siafi"]
+
