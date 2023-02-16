@@ -1,10 +1,13 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class DatasBR:
 
     def __init__(self):
-        self.data_cadastro = datetime.today()
+        self.momento_cadastro = datetime.today()
+
+    def __str__(self):
+        return self.formatar_data()
 
     def mes_cadastro(self):
         meses_do_ano = {
@@ -21,7 +24,7 @@ class DatasBR:
             11: "Novembro",
             12: "Dezembro"
         }
-        numero_mes_cadastro = self.data_cadastro.month
+        numero_mes_cadastro = self.momento_cadastro.month
         mes_cadastro = meses_do_ano[numero_mes_cadastro]
 
         return mes_cadastro
@@ -36,9 +39,15 @@ class DatasBR:
             5: "Sábado",
             6: "Domingo"
         }
-        dia = self.data_cadastro.weekday()
+        dia = self.momento_cadastro.weekday()
 
         dia_da_semana = semana[dia]
 
         return dia_da_semana
 
+    def formatar_data(self):
+        data_formatada = self.momento_cadastro.strftime("%d/%m/%y %H:%M:%S")
+        return data_formatada
+
+    def tempo_de_cadastro(self):
+        return (datetime.today() + timedelta(days=15, hours=12)) - self.momento_cadastro
